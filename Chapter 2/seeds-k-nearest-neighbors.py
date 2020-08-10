@@ -17,8 +17,8 @@ for i in test_index:
 
     # calculate euclidean distance from the sample to all points in the training data set
     distances = [[distance.euclidean(test_sample[:-1], x[:-1]), x[-1]] for x in train_data]
-    distances.sort()
-    distances = [x[-1] for x in distances[:10]]
+    distances = sorted(distances, key=lambda x:x[0])
+    distances = [x[-1] for x in distances[:k]]
 
     # select the majority of the labels of top k neighbors and compare with the test sample's label
     top_k = mode(distances)
